@@ -5,7 +5,7 @@ function ButtonLink(props) {
     //props recebe algo de outros locais => ==> <===
     //props => ClassName ( algo passado para ele.)
     return (
-        <a href={props.href} className={props.className}>
+        <a href={props.to} className={props.className}>
             {props.children}
         </a>
     );

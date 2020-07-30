@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../assets/img/Logo.png';
 import './Menu.css';
 import ButtonLink from '../componentes/ButtonLink/Index';
+import { Link } from 'react-router-dom';
 // função que chama o menu para outras paginas
 function Menu() {
     return(
@@ -10,7 +11,7 @@ function Menu() {
         <img className='Logo' src={Logo} alt='Nerdfrix filmes' />
         </a>
 
-        <ButtonLink className="ButtonLink" href="/">papoca</ButtonLink>
+        <ButtonLink as={Link} className="ButtonLink" to="/cadastro/video" >papoca</ButtonLink>
         </nav>
     )
 }
