@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageDefault from '../../../components/PaggeDefault/Index';
 import { Link } from 'react-router-dom';
+import FormField from '../../../components/formField/index'
 //função que cadastra a porra do nome que quero colocar na tela
 function CadastroCategoria() {
     const valoresIniciais = {
@@ -38,7 +39,28 @@ function CadastroCategoria() {
                 setValues(valoresIniciais)
             }
         } >
-            <div>
+            <FormField 
+            label="nome da Categoria"
+            type="text"
+            value={values.nome}
+            name="nome"
+            onchange={handlechange}
+            />
+            <FormField 
+             label="descrição"
+             type="textArea"
+             value={values.descrição}
+             name="descrição"
+             onchange={handlechange}
+            />
+            <FormField 
+             label="cor"
+             type="color"
+             value={values.cor}
+             name="cor"
+             onchange={handlechange}
+            />
+           {/* <div>
                 <label>nome da categoria:
                 <input type="text" 
                 name="nome"
@@ -47,8 +69,8 @@ function CadastroCategoria() {
                 />
                 </label>
 
-            </div>
-<div>
+           </div> */}
+{/*<div>
 
                 <label>categoria
                     <textarea type="text"
@@ -57,8 +79,8 @@ function CadastroCategoria() {
                     onChange={handlechange}
                     />
                 </label>
-</div>
-<div>
+</div>*/}
+{/*<div>
 
                 <label>cor
                     <input type="color"
@@ -68,7 +90,7 @@ function CadastroCategoria() {
                     />
 
                 </label>
-</div>
+</div>*/}
                 <button to="/" >
                     Cadastrar
                 </button>
