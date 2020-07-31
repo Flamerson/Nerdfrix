@@ -3,28 +3,47 @@ import PageDefault from '../../../components/PaggeDefault/Index';
 import { Link } from 'react-router-dom';
 //função que cadastra a porra do nome que quero colocar na tela
 function CadastroCategoria() {
-    const [categorias , setCategorias] = useState(['qualquer']);
-    const [nomeDaCategoria , setNomeDaCategoria] = useState('Filmes');
+    const valoresIniciais = {
+        nome: '',
+        descrição:'' ,
+        cor:'' ,
+    }
+    const [categorias , setCategorias] = useState([]);
+    const [values , setValues ] = useState(valoresIniciais);
+    
+    function setValue(chave, valor) {
+        setValues({
+            ...values,
+            [chave]: valor, // nome: 'valor'
+        })
+    }
+
+    function handlechange(infosDoEvento) {
+        setValue(
+            infosDoEvento.target.getAttribute('name'),
+            infosDoEvento.target.value
+        )
+    }
 
     return(
         <>
         <PageDefault>
-    <h1>Cadastro de Categoria: {nomeDaCategoria} </h1>
+    <h1>Cadastro de Categoria: {values.nome} </h1>
             <form onSubmit={ function handleSubmit(infosDoEvento) {
                 infosDoEvento.preventDefault();
                 setCategorias([
-                    ...categorias, nomeDaCategoria
-                ])
+                    ...categorias, values
+                ]);
+
+                setValues(valoresIniciais)
             }
         } >
             <div>
                 <label>nome da categoria:
                 <input type="text" 
-                value={nomeDaCategoria}
-                onChange={function funçãohandler(infosDoEvento){
-                    //evento que faz o nome aparecer na tela apos ser digitado :)
-                    setNomeDaCategoria(infosDoEvento.target.value);
-                } }
+                name="nome"
+                value={values.nome}
+                onChange={handlechange} 
                 />
                 </label>
 
@@ -33,10 +52,9 @@ function CadastroCategoria() {
 
                 <label>categoria
                     <textarea type="text"
-                    value={nomeDaCategoria}
-                    onChange={function funçãohandler(infosDoEvento){
-                        setNomeDaCategoria(infosDoEvento.target.value);
-                    }}
+                    name='descrição'
+                    value={values.descrição}
+                    onChange={handlechange}
                     />
                 </label>
 </div>
@@ -44,10 +62,9 @@ function CadastroCategoria() {
 
                 <label>cor
                     <input type="color"
-                    value={nomeDaCategoria}
-                    onChange={function funçãohandler(infosDoEvento){
-                        setNomeDaCategoria(infosDoEvento.target.value);
-                    }}
+                    name='cor'
+                    value={values.cor}
+                    onChange={handlechange}
                     />
 
                 </label>
@@ -62,7 +79,7 @@ function CadastroCategoria() {
                 {categorias.map((categoria, indice)=> {
                     return (
                         <li key={`${categoria}${indice}`}>
-                            {categoria}
+                            {categoria.nome}
                         </li>
                     )
                 })}
