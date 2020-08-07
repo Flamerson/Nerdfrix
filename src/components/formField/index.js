@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { css } from 'styled-components';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 // deixando o input mais bonito.
 const FormFieldWrapper = Styled.div`
 position: relative;
@@ -77,6 +77,7 @@ function FormField({
   const formField = 'id_$(name)';
   const isTypeTextArea = type === 'textarea';
   const tag = isTypeTextArea ? 'textarea' : 'input';
+  const hasValue = Boolean(value.length);
 
   return (
     <FormFieldWrapper>
@@ -89,6 +90,7 @@ function FormField({
           type={type}
           value={value}
           name={name}
+          hasValue={hasValue}
           onChange={onchange}
         />
         <Label.Text>
