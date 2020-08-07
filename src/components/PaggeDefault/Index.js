@@ -1,9 +1,9 @@
 import React from 'react';
 import Menu from '../menus';
 import Footer from '../Footer';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
-const Main= styled.main `
+const Main= Styled.main `
 background-color: var(--black);
 color: var(--white); 
 flex: 1;
