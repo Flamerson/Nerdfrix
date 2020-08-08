@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PaggeDefault/Index';
 import FormField from '../../../components/formField/index';
@@ -25,6 +25,17 @@ function CadastroCategoria() {
       infosDoEvento.target.value,
     );
   }
+
+  useEffect(() => {
+    console.log('Hello World');
+    const URL_Top = 'http://localhost:8080/categorias/';
+    fetch(URL_Top)
+      .then(async (ReturnToServer) => {
+        const Resposta = await ReturnToServer.json();
+        setCategorias(Resposta);
+        return;
+      });
+  });
 
   return (
     <>
@@ -63,41 +74,16 @@ function CadastroCategoria() {
             name="cor"
             onchange={handlechange}
           />
-          {/* <div>
-                <label>nome da categoria:
-                <input type="text"
-                name="nome"
-                value={values.nome}
-                onChange={handlechange}
-                />
-                </label>
 
-           </div> */}
-          {/* <div>
-
-                <label>categoria
-                    <textarea type="text"
-                    name='descrição'
-                    value={values.descrição}
-                    onChange={handlechange}
-                    />
-                </label>
-</div> */}
-          {/* <div>
-
-                <label>cor
-                    <input type="color"
-                    name='cor'
-                    value={values.cor}
-                    onChange={handlechange}
-                    />
-
-                </label>
-</div> */}
           <button to="/">
             Cadastrar
           </button>
 
+          {categorias.length === 0 && (
+          <div>
+            loading...
+          </div>
+          )}
         </form>
 
         <ul>
